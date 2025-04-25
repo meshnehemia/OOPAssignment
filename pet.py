@@ -55,7 +55,7 @@ class pet:
                 self.energy = 0
             pass
         else:
-                print("you cannot play while you are hungry")
+                print("you cannot play while you dont have energy eat and sleep")
     def get_status(self):
         print("name : ",self.name)
         print("energy : ",self.energy)
@@ -72,7 +72,7 @@ class pet:
             else:
                 print(f"{self.name} already knows the trick: {trick}.")
         else:
-            print("you cannot play while you are hungry")
+            print("you cannot play while you are energy eat and sleep")
 
     def show_tricks(self):
         #Prints all the tricks that the pet has learned.
