@@ -30,30 +30,32 @@ class pet:
         
     def play(self):
         #  decreases energy by 2, increases happiness by 2, and increases hunger by 1.
-        if self.energy >= 2:
-            self.energy -= 2
-            if self.happiness <= 10:
-                self.happiness +=2
+        if self.energy > 0 :
+            if self.energy >= 2:
+                self.energy -= 2
+                if self.happiness <= 10:
+                    self.happiness +=2
+                else:
+                    pass
+                if self.hunger <= 10:
+                    self.hunger += 1
+                else:
+                    pass
+            elif self.energy == 1 : 
+                self.energy -= 1 
+                if self.happiness <= 10:
+                    self.happiness += 1
+                else:
+                    pass
+                if self.hunger <= 10:
+                    self.hunger += 0.5
+                else:
+                    pass
             else:
-                pass
-            if self.hunger <= 10:
-                self.hunger += 1
-            else:
-                pass
-
-        elif self.energy == 1 : 
-            self.energy -= 1 
-            if self.happiness <= 10:
-                self.happiness += 1
-            else:
-                pass
-            if self.hunger <= 10:
-                self.hunger += 0.5
-            else:
-                pass
+                self.energy = 0
+            pass
         else:
-            self.energy = 0
-        pass
+                print("you cannot play while you are hungry")
     def get_status(self):
         print("name : ",self.name)
         print("energy : ",self.energy)
@@ -63,11 +65,14 @@ class pet:
 
     def train(self, trick):
         #Teaches the pet a new trick and stores it in the tricks list
-        if trick not in self.tricks:
-            self.tricks.append(trick)
-            print(f"{self.name} learned a new trick: {trick}!")
+        if self.energy > 0 :
+            if trick not in self.tricks:
+                self.tricks.append(trick)
+                print(f"{self.name} learned a new trick: {trick}!")
+            else:
+                print(f"{self.name} already knows the trick: {trick}.")
         else:
-            print(f"{self.name} already knows the trick: {trick}.")
+            print("you cannot play while you are hungry")
 
     def show_tricks(self):
         #Prints all the tricks that the pet has learned.
@@ -80,8 +85,9 @@ class pet:
     def play_trick(self):
         trick = input("Enter the trick you want to play: ")
         if trick in self.tricks:
-            print(f"{self.name} is performing the trick: {trick}!")
             self.play()
+            print(f"{self.name} is performing the trick: {trick}!")
+
         else:
             print(f"{self.name} doesn't know the trick: {trick}.")
             print("Would you like to train your pet to learn this trick? (yes/no)")
